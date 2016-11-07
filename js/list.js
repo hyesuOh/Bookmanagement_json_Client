@@ -93,9 +93,20 @@ var modal3 = document.getElementById('id03');
 					$("tbody").empty();
 					//result : JSON문자열을 JavaScript 객체로 변환시킨 것
 						for(var i = 0; i<result.length; i++) {
+							var isAble = result[i].share;
+
 
 							var tr = $("<tr></tr>").attr("data-isbn",result[i].isbn);
-							var titleTd = $("<td></td>").text(result[i].title);
+
+							var title_div=$("<div></div>").text(result[i].title);
+							var detail_div=$("<div></div>");
+
+							var myTd = $("<td></td>");
+
+
+							var titleTd=myTd.append(title_div).append(detail_div);
+
+
 							var authorTd = $("<td></td>").text(result[i].author);
 							var priceTd = $("<td></td>").text(result[i].price);
 							var img = $("<img/>").attr("src", result[i].imgbase64);
@@ -127,13 +138,11 @@ var modal3 = document.getElementById('id03');
 							});
 							var deleteTd = $("<td></td>").append(deletebtn);
 
-
-
 							var infobtn= $("<input />").attr("type","button").attr("id","info").attr("value","상세정보보기").attr("class","btn-xs, success");
 							infobtn.on("click",function(){
 								alert("info!!");
 								var isbn = $(this).parent().parent().attr("data-isbn");
-								thisTd=$(this).parent().parent().find("td:nth-child(2)");
+								thisTd=$(this).parent().parent().find("td:nth-child(2) > div:nth-child(2)");
 								$.ajax({
 									// context root , urlMapping
 									url: "http://localhost:7070/book/bookInfo",
@@ -181,7 +190,7 @@ var modal3 = document.getElementById('id03');
 								var author = $(this).parent().parent().find("td:nth-child(3)").text();
 								var author_updatebox = $("<input />").attr("class", "updateClass").attr("type","text").val(author);
 
-								var title = $(this).parent().parent().find("td:nth-child(2)").text();
+								var title = $(this).parent().parent().find("td:nth-child(2) > div:nth-child(1)").text();
 								var title_updatebox = $("<input />").attr("class", "updateClass").attr("type","text").val(title);
 
 								$(this).parent().parent().find("[type=button]").attr("disabled", "disabled");
@@ -332,10 +341,10 @@ var modal3 = document.getElementById('id03');
 
 							});
 							var updateTd = $("<td></td>").append(updatebtn);
+							var sharebtn= null;
 
-
-
-							var sharebtn = $("<input />").attr("type","button").attr("value","대여하기");
+							if(isAble==1){sharebtn = $("<input />").attr("type","button").attr("value","반납하기");}
+							else if(isAble==0){sharebtn = $("<input />").attr("type","button").attr("value","대여하기");}
 
 							sharebtn.on("click",function(){
 
@@ -414,7 +423,7 @@ var modal3 = document.getElementById('id03');
 
 								alert("서평 보기!!");
 								var isbn = $(this).parent().parent().attr("data-isbn");
-								var thisTd=$(this).parent().parent().find("td:nth-child(2)");
+								var thisTd=$(this).parent().parent().find("td:nth-child(2) > div:nth-child(2)");
 								$.ajax({
 									// context root , urlMapping
 									url: "http://localhost:7070/book/commentView",
@@ -448,7 +457,7 @@ var modal3 = document.getElementById('id03');
 										alert("error");
 									}
 
-								});
+								});thisTd.empty();
 							});
 
 							var comviewTd=$("<td></td>").append(comviewbtn);
@@ -530,5 +539,6 @@ function insertComment(myisbn){
 			alert("업데이트 에러 발생!!");
 		}
 	});
+
 
 }

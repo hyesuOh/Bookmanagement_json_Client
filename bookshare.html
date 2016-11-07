@@ -25,7 +25,7 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/freelancer.min.css.css" rel="stylesheet">
-    <script src="js/list3.js"></script>
+    <script src="js/list5.js"></script>
 
 
 </head>
@@ -45,10 +45,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
-          <span class="navbar-form navbar-right">
-            <input type="text" id = "keyword" class="form-control" placeholder="Search..."
-                   onkeyup="searchBook()">
-          </span>
         </div>
     </div>
 </nav>
@@ -59,28 +55,26 @@
             <ul class="nav nav-sidebar">
                 <li><a href="list.html">도서 검색<span class="sr-only">(current)</span></a></li><br>
                 <li><a href="insert.html">신규 도서 추가<span class="sr-only">(current)</span></a></li><br>
-                <li class="active"><a href="comment.html"> My comment 보기 <span class="sr-only">(current)</span></a></li>
+                <li><a href="comment.html"> My comment 보기 <span class="sr-only">(current)</span></a></li>
                 <br><li ><a href="commentkeyword.html"> comment 키워드로 검색하기 <span class="sr-only">(current)</span></a></li>
-                <br><li ><a href="bookshare.html"> 나의 대여/반납 <span class="sr-only">(current)</span></a></li>
+                <br><li class="active"><a href="bookshare.html"> 나의 대여/반납 <span class="sr-only">(current)</span></a></li>
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
-                <h2 class="sub-header">도서 리스트</h2>
+                <h2 class="sub-header">도서 대여 현황 리스트</h2>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>제목</th>
-                            <th>서평</th>
                             <th>저자</th>
-                            <th>삭제</th>
+                            <th>반납하기</th>
 
                         </tr>
                         </thead>
-
                         <tbody>
 
                         </tbody>
