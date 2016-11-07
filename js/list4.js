@@ -17,7 +17,7 @@ function searchComment(){
                 keyword: $("#placee").val()
             },
             success: function (result) {
-
+                $("tbody").empty();
                 //result : JSON문자열을 JavaScript 객체로 변환시킨 것
                 for (var i = 0; i < result.length; i++) { //title id comment
 

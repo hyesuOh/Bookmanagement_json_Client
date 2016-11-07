@@ -343,7 +343,7 @@ var modal3 = document.getElementById('id03');
 							var updateTd = $("<td></td>").append(updatebtn);
 							var sharebtn= null;
 
-							if(isAble==1){sharebtn = $("<input />").attr("type","button").attr("value","반납하기");}
+							if(isAble==1){sharebtn = $("<input />").attr("type","button").attr("value","대여불가");}
 							else if(isAble==0){sharebtn = $("<input />").attr("type","button").attr("value","대여하기");}
 
 							sharebtn.on("click",function(){
@@ -360,13 +360,11 @@ var modal3 = document.getElementById('id03');
 											isbn : isbn
 
 										},
-										success : function(){
+										success : function(result){
 
 											if(result){
 												alert("성공적으로 대여하였습니다.");
 												eee.addClass("btn btn-danger").attr("value","반납하기");
-											}else{
-												alert("이미 대여 된 책입니다.");
 											}
 
 										},
@@ -388,11 +386,15 @@ var modal3 = document.getElementById('id03');
 											isbn : isbn
 
 										},
-										success : function(){
+										success : function(result){
 
 											if(result){
+
 												alert("성공적으로 반납하였습니다.");
 												ee.addClass("btn btn-success").attr("value","대여하기"); //여쭤보기
+											}
+											else{
+												alert("이미 대여 된 책입니다. 대여가 불가합니다.");
 											}
 
 										},
@@ -401,8 +403,6 @@ var modal3 = document.getElementById('id03');
 										}
 									});
 								}
-
-
 
 
 							});
